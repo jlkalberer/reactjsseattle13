@@ -25,6 +25,7 @@ React.createClass({
         map.setView({ zoom: 10, center: new Microsoft.Maps.Location(40.73, -73.98) })
 
         Microsoft.Maps.loadModule('Microsoft.Maps.Traffic', { callback: addTrafficLayer });
+        Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: createSearchManager })
         
         this.map = map;
     },
