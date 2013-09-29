@@ -97,20 +97,45 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+html, body {
+    min-height:100%;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+    #container,
+    #container > div {
+        height: 100%;
+    }
+        aside {
+            width:300px;
+            float:left;
+            position: absolute;
+            z-index: 9999999;
+            height: 100%;
+            background: #ffffff;
+            padding:10px;
+        }
+            aside a {
+                text-decoration: none;
+            }
+            input[type="search"] {
+                width:280px;
+                padding:10px 5px;
+                font-size:24px;
+            }
 
+            #advancedItems {
+                display: none;
+                list-style: none;
+                margin:0;
+                padding:0;
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
+        .map {
+            position: relative;
+            min-height: 100%;
+            margin-left:320px;
+        }
 
 
 /* ==========================================================================
