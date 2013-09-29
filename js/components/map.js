@@ -3,7 +3,7 @@ var Map =
 React.createClass({
     getInitialState : function () {
         return { 
-            score : ""
+            score : []
         };
     },                                      
     mapper : {
@@ -93,10 +93,14 @@ React.createClass({
             // 
             var threshhold = 1/69 * 1/69 * 2;
             var center = firstResult.locationCenter;
-            var score = 0;
+            var score = {};
             $.each(arguments, function () {
             	var temp = this;
-            	var imgPath = 'img/'+temp.type.replace(/\s/g, '%20')+'.svg';
+                var imgPath = 'img/'+temp.type.replace(/\s/g, '%20')+'.svg';
+                if (!score[temp.type]) {
+                    score[temp.type] = 0;
+                }
+
                 $.each(this.data, function () {
                     var pushpin = new Microsoft.Maps.Pushpin(this, { typeName : 'customPushpin', icon : imgPath });
                     self.map.entities.push(pushpin);
@@ -108,13 +112,12 @@ React.createClass({
                     lon = lon * lon;
 
                     if ((lat + lon) < threshhold) {
-                        score += self.mapper[temp.type].radius;
+                        score[temp.type] = (score[temp.type] || 0) + self.mapper[temp.type].radius;
                     }
                 });
             });
 
-            self.setState({score : "Score " + score})
-            console.log("score " + score);
+            self.setState({score : score})
         });
     },
     componentDidMount: function(node) {

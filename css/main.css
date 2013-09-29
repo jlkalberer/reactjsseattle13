@@ -102,6 +102,8 @@ html, body {
     height: 100%;
     font-family: 'Open Sans', sans-serif;
 }
+path { fill: #ffffff !important; }
+
     #container,
     #container > div {
         height: 100%;
@@ -116,9 +118,41 @@ html, body {
             padding:100px 10px 10px;
             background: url('../img/noisescore.png') no-repeat;
         }
+            aside ul {
+                margin:0;
+                padding:20px 0 0 0;
+                list-style: none;
+            }
             aside a {
                 text-decoration: none;
             }
+            #score li {
+                display: inline-block;
+                height: 50px;
+                line-height: 10px;
+                width:280px;
+            }
+            aside li img {
+                height:25px;
+                padding:6px;
+                float: left;
+            }
+            aside li h2 {
+                padding-left:50px;
+                font-size:1em;
+            }
+            aside h2 span:last-child {
+                float: right;
+            }
+
+            aside h1 {
+                width:280px;
+                font-size:1.5em;
+            }
+                aside h1 span:last-child {
+                    float: right;
+                }
+
             input[type="search"] {
                 width:280px;
                 padding:10px 5px;

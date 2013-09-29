@@ -16,14 +16,28 @@ React.createClass({
         return false;
     },
     render : function () {
+        var total = 0;
+        var html = [];
+        for (var key in this.props.score) {
+            var temp = this.props.score[key];
+            var imgPath = 'img/'+ key.replace(/\s/g, '%20')+'.svg';
+
+            html.push(<li><img src={imgPath} /><h2>{key} Score<span htmlClass="score">{temp}</span></h2></li>);
+            debugger;
+            total += temp;
+        }
+
         return (
             <aside>
                 <form id="searchForm" onSubmit={this.handleSubmit}>
                     <input type="search" placeholder="Enter location" />
                     <Locations includeLocations={this.props.includeLocations} />
                 </form>
-                <div>
-                    <h1>{this.props.score}</h1>
+                <div id="score">
+                    <ul>
+                        {html}
+                        <li><h1>Total Score<span>{total}</span></h1></li>
+                    </ul>
                 </div>
             </aside>
             );
