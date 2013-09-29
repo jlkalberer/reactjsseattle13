@@ -21,7 +21,7 @@ React.createClass({
         var html = this.props.includeLocations.map(function (location) {
             return (<li>
                         <input id={location.id} type="checkbox" defaultChecked="checked" value={location.name} />
-                        <label for={location.id}>Include {location.name}</label>
+                        <label htmlFor={location.id}>Include {location.name}</label>
                     </li>);
             });
 

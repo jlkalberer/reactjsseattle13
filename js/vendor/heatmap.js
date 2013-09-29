@@ -183,8 +183,7 @@ var HeatMapLayer = function (map, locations, options) {
 			//CUSTOM_MOD
 			radiusInPixel = _origLocations[i].radius / _map.getMetersPerPixel();
 			
-			console.log(radiusInPixel);
-            // Create radial gradient centred on this point
+			// Create radial gradient centred on this point
             var grd = ctx.createRadialGradient(x, y, 0, x, y, radiusInPixel);
 			
 			//CUSTOM_MOD

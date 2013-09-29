@@ -22,6 +22,9 @@ React.createClass({
                     <input type="search" placeholder="Enter location" />
                     <Locations includeLocations={this.props.includeLocations} />
                 </form>
+                <div>
+                    <h1>{this.props.score}</h1>
+                </div>
             </aside>
             );
     }

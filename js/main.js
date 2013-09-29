@@ -5,7 +5,8 @@ var includeLocations = [
 		{"id" : "police", "name" : "Police Stations"}, 
 		{"id" : "bar", "name" : "Bars"}, 
 		{"id" : "school", "name" : "Schools"},
-		{"id" : "eat+drink", "name" : "eat+drink"}
+		{"id" : "restaurant", "name" : "Restaurant"},
+		{"id" : "shopping", "name" : "Shopping"},
 	];
 React.renderComponent(
 	<Map apiKey={apiKey} includeLocations={includeLocations}/>,
