@@ -136,7 +136,9 @@ html, body {
             min-height: 100%;
             margin-left:320px;
         }
-
+.MapPushpinBase {
+    z-index: 9999999;
+}
 
 /* ==========================================================================
    Helper classes

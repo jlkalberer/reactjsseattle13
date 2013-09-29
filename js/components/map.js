@@ -35,6 +35,7 @@ React.createClass({
             startIndex: 0, 
             callback: function (searchResponse) {
                 var items = searchResponse.searchResults.map(function (response) {
+                    response.location.label = response.name;
                     return response.location;
                 });
 
@@ -65,12 +66,12 @@ React.createClass({
 
             self.createHeatMap(arguments, self.map);
 
-            /*$.each(arguments, function () {
+            $.each(arguments, function () {
                 $.each(this.data, function () {
-                    var pushpin = new Microsoft.Maps.Pushpin(this, { typeName : 'customPushpin', text : 'Test' });
+                    var pushpin = new Microsoft.Maps.Pushpin(this, { typeName : 'customPushpin', text : this.label });
                     self.map.entities.push(pushpin);
                 });
-            });*/
+            });
         });
     },
     componentDidMount: function(node) {
