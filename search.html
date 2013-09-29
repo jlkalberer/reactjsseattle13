@@ -1,0 +1,85 @@
+                                                                     
+                                                                     
+                                                                     
+                                             
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <title></title>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+      <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
+      <script type="text/javascript">
+
+          var map = null;
+          var mybingInfo = "AqH50f-jmfRx83JGJvAmnUoy1Sgc_tvFJo5sD1z_OKjQRKDnwbDuEb7nzfdttP1z";
+          var mywhat = "";
+          var pageIndex = 0;
+
+          var itemLocations= [];
+          var noiseItem = {itemType:"Fire Station", locations:itemLocations};
+          var noiseItems = [];
+
+          function GetMap() {
+
+              map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), { credentials: mybingInfo, center: new Microsoft.Maps.Location(47.5, -122.3), zoom: 9 });
+
+              Microsoft.Maps.loadModule('Microsoft.Maps.Search', { callback: searchModuleLoaded });
+
+          }
+
+
+          function searchModuleLoaded() {
+              var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+
+              var searchRequest = { what: "pizza", where: "Seattle", count: 50, callback: searchCallback, errorCallback: searchError };
+              searchManager.search(searchRequest);
+          }
+
+          function searchCallback(searchResponse, userData) {
+              //alert("The first search result is " + searchResponse.searchResults[0].name + ".");
+              var output = "";
+              for (i = 0; i < searchResponse.searchResults.length; i++)
+                  output = output + "<br />" + (i + 1) + ") " + searchResponse.searchResults[i].name;
+              document.getElementById("mydata").innerHTML = output;
+          }
+
+
+          function searchError(searchRequest) {
+              alert("An error occurred.");
+          }
+          function WhatWhere() {
+              var searchManager = new Microsoft.Maps.Search.SearchManager(map);
+              var what_txt = document.getElementById("txtwhat").value;
+              var where_txt = document.getElementById("txtwhere").value;
+              //if (mywhat == what_txt) {
+              //    pageIndex++;
+              //} else {
+              //    pageIndex = 0;
+              //    mywhat = what_txt;
+              //}
+
+              var searchRequest = { what: what_txt, where: where_txt, count: 50, startIndex: pageIndex, callback: searchCallback, errorCallback: searchError };
+              searchManager.search(searchRequest);
+          }
+
+      </script>
+   </head>
+   <body onload="GetMap();">
+      <div style="position:fixed; left:300px; width:600px; height:600px;">ryeuwyruyweuyruwyruwyeuwure
+          
+          <div  id='mapDiv'> </div>
+          
+      </div>
+       <div id="mydata"style="position:relative; width:600px; height:600px;"></div> 
+       
+       <div id="Div1"style="position:fixed; left:950px; top:50px; width:600px; height:600px;">
+           What: <input type="text" id="txtwhat" value="Schools" />
+           in <input type="text" id="txtwhere" value="535 226th LN NE Sammamish WA, 98074" />
+            <input type="button" onclick="WhatWhere()" value="Find biz in" />
+           <br />
+           
+           </div>
+   </body>
+</html>

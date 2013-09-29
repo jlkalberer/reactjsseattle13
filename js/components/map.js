@@ -9,6 +9,7 @@ React.createClass({
             'Hospitals':{'radius':200,'intensity':0.7},
             'Police Stations':{'radius':200,'intensity':0.7},
             'Bars':{'radius':100,'intensity':0.5},
+            'eat+drink':{'radius':60,'intensity':0.5},
             'Schools':{'radius':60,'intensity':0.5},
         };
         $.each(locations, function(i) {
@@ -26,13 +27,13 @@ React.createClass({
             heatmapLayer = new HeatMapLayer(map, finalLocations);
         }});
     },
-    search : function(where, what) {
+    search : function(where, what, index) {
         var deferred = new $.Deferred();
         var searchRequest = { 
             what: what, 
             where: where, 
-            count: 50, 
-            startIndex: 0, 
+            count: 20, 
+            startIndex: index, 
             callback: function (searchResponse) {
                 var items = searchResponse.searchResults.map(function (response) {
                     response.location.label = response.name;
@@ -55,9 +56,13 @@ React.createClass({
     },
     multiSearch : function (where, itemsToSearch, callback) {
         var self = this;
-        var searchArray = $.makeArray(itemsToSearch.map(function (item) {
-                return self.search(where, item);            
-            }));
+        
+        var searchArray = [];
+        for (var i = 0; i < 3; i += 1) {
+            searchArray = searchArray.concat(itemsToSearch.map(function (item) {
+                    return self.search(where, item, i);            
+                }));
+        }
 
         $.when.apply($, searchArray).done(function (firstResult) {
             if (callback) {
@@ -77,12 +82,20 @@ React.createClass({
     componentDidMount: function(node) {
         Microsoft.Maps.registerModule("HeatMapModule", "js/vendor/heatmap.js");
         Microsoft.Maps.loadModule('Microsoft.Maps.Search');
-        var map = new Microsoft.Maps.Map($(node).find(".map").get(0), {credentials: this.props.apiKey, showDashboard: false, enableSearchLogo: false });
+        var map = new Microsoft.Maps.Map($(node).find(".map").get(0), {credentials: this.props.apiKey, showDashboard: true, enableSearchLogo: false });
+
+        Microsoft.Maps.loadModule('Microsoft.Maps.Traffic', { callback: function() { trafficLayer = new Microsoft.Maps.Traffic.TrafficLayer(map); 
+            // show the traffic Layer 
+            trafficLayer.show();} 
+        }); 
 
         this.map = map;
     },
     updateLocation : function (location) {
-        this.map.setView({ zoom: location.zoom, center: new Microsoft.Maps.Location(location.x, location.y) });
+        var zoom = this.map.getTargetZoom();
+        zoom = zoom < 15 ? 15 : zoom;
+        
+        this.map.setView({ zoom: zoom, center: new Microsoft.Maps.Location(location.x, location.y) });
     },
     render : function () {
         return (<div>

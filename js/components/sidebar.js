@@ -10,7 +10,7 @@ React.createClass({
         var searchTerm = $("#searchForm input[type='search']").val();
 
         this.props.search(searchTerm, selected, function (response) {
-            self.props.setLocation({zoom: 15, x : response.latitude, y : response.longitude})
+            self.props.setLocation({ x : response.latitude, y : response.longitude})
         });
 
         return false;
