@@ -95,9 +95,10 @@ React.createClass({
             var center = firstResult.locationCenter;
             var score = 0;
             $.each(arguments, function () {
-                var temp = this;
+            	var temp = this;
+            	var imgPath = 'img/'+temp.type.replace(/\s/g, '%20')+'.svg';
                 $.each(this.data, function () {
-                    var pushpin = new Microsoft.Maps.Pushpin(this, { typeName : 'customPushpin', text : this.label });
+                    var pushpin = new Microsoft.Maps.Pushpin(this, { typeName : 'customPushpin', icon : imgPath });
                     self.map.entities.push(pushpin);
 
                     var lat = center.latitude - this.latitude,

@@ -1,1 +1,1 @@
-var apiKey = "Aibx-smc19PXFvvrdeNaecxDnxnXOwvKcYpEMqTTRv5dUdtIQ7bLNaSHLuTb_96U";
+var apiKey = 'Aibx-smc19PXFvvrdeNaecxDnxnXOwvKcYpEMqTTRv5dUdtIQ7bLNaSHLuTb_96U';
