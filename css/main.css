@@ -139,6 +139,17 @@ html, body {
 .MapPushpinBase {
     z-index: 9999999;
 }
+.customPushpin {
+	height:25px;
+	width:32px;
+	overflow:visible;
+	padding-top:25px;
+}
+.customPushpin img {
+	height:25px;
+	width:25px;
+	opacity:0.50;
+}
 
 /* ==========================================================================
    Helper classes
